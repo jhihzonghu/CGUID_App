@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Cgup</string>
+
+    <string name="title_section1">Adopt</string>
+    <string name="title_section2">Status</string>
+    <string name="title_section3">Map</string>
+    <string name="title_section4">Usage</string>
+    <string name="title_section5">Info</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
