@@ -243,7 +243,7 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-         if(item!=null){
+         if(item.getItemId()!=R.id.action_example){
              if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
                  mDrawerLayout.closeDrawer(Gravity.RIGHT);
              } else {
