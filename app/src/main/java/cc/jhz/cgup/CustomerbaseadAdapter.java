@@ -48,12 +48,6 @@ public class CustomerbaseadAdapter extends BaseAdapter {
         rootview = mInflater.inflate(R.layout.customlistview, null);
             imgview = (ImageView) rootview.findViewById(R.id.customimgview);
             imgview.setImageResource(Item[position]);
-            rootview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "u click it", Toast.LENGTH_SHORT).show();
-                }
-            });
 
 
         return rootview;

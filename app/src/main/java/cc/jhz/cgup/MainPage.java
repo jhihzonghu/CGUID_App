@@ -15,8 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainPage extends ActionBarActivity
@@ -162,7 +165,16 @@ public class MainPage extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            int[] imageRes = {R.drawable.fox,R.drawable.fox,R.drawable.logo,R.drawable.logo,R.drawable.logo};
             View rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
+            ListView mainpagelistview = (ListView)rootView.findViewById(R.id.fragment_main_page_listview);
+            mainpagelistview.setAdapter(new CustomerbaseadAdapter(getActivity(),imageRes));
+            mainpagelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(getActivity(),"This is position:"+ position,Toast.LENGTH_LONG).show();
+                }
+            });
             return rootView;
         }
 
