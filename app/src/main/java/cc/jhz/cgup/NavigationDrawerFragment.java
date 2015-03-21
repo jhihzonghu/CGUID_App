@@ -1,5 +1,6 @@
 package cc.jhz.cgup;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -254,7 +255,8 @@ public class NavigationDrawerFragment extends Fragment {
 
 
         if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+             Intent welcomeToMain= new Intent(getActivity(),GuidePage.class);
+            startActivity(welcomeToMain);
             return true;
         }
 
