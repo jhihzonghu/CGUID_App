@@ -14,13 +14,22 @@ import android.widget.Toast;
 /**
  * Created by Home on 2015/3/21.
  */
+
 public class GuidePage extends FragmentActivity {
+    Bundle GuideIndex ;
+    int GuidePosition=0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.guidepage);
         Button skipButton = (Button)findViewById(R.id.skipButton);
         Button nextButton = (Button)findViewById(R.id.nextButton);
-
+        initGuideIndex();
+    }
+    public void initGuideIndex()
+    {
+     GuideIndex = this.getIntent().getExtras();
+     GuidePosition = GuideIndex.getInt("BundleToGuidePageVal");
+     Toast.makeText(this,""+GuidePosition,Toast.LENGTH_SHORT).show();
     }
 }

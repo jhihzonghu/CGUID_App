@@ -255,8 +255,10 @@ public class NavigationDrawerFragment extends Fragment {
 
 
         if (item.getItemId() == R.id.action_example) {
-             Intent welcomeToMain= new Intent(getActivity(),GuidePage.class);
-            startActivity(welcomeToMain);
+             //Intent welcomeToMain= new Intent(getActivity(),GuidePage.class);
+             //this.setArguments();
+            //int GuidePagePosInt = getActivity().get
+            //startActivity(welcomeToMain);
             return true;
         }
 

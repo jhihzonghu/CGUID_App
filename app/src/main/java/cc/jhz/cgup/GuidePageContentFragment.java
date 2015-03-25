@@ -12,7 +12,14 @@ import android.view.ViewGroup;
  */
 public class GuidePageContentFragment extends Fragment {
   public GuidePageContentFragment(){}
-
+  public static GuidePageContentFragment newInstance(int index)
+  {
+    GuidePageContentFragment guidePageContentFragment = new GuidePageContentFragment();
+    Bundle bundle = new Bundle();
+    bundle.putInt("index",index);
+    guidePageContentFragment.setArguments(bundle);
+    return guidePageContentFragment;
+  }
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View GuidPageContentView = inflater.inflate(R.layout.contentfragment,container,false);
