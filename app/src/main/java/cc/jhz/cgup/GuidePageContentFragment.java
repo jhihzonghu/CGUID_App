@@ -20,6 +20,8 @@ public class GuidePageContentFragment extends Fragment {
  {
 
  }
+   //20150402 完成Activity與Fragment參數傳遞
+   //新增GuidePageContentFragment中 newInstance的方法
   public static GuidePageContentFragment newInstance(int index)
   {
     GuidePageContentFragment guidePageContentFragment = new GuidePageContentFragment();
@@ -36,6 +38,7 @@ public class GuidePageContentFragment extends Fragment {
     }
 
     @Override
+    //20150402 可以定位目前使用者所在page
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View GuidPageContentView = inflater.inflate(R.layout.contentfragment,container,false);
         ImageView imageView = (ImageView)GuidPageContentView.findViewById(R.id.contentFragmentImg);
