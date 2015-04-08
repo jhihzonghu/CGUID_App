@@ -38,7 +38,7 @@ public class MainPage extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+
 
         // Set up the drawer+.
         mNavigationDrawerFragment.setUp(
@@ -57,7 +57,7 @@ public class MainPage extends ActionBarActivity
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                         .commit();
                 BundleToGuidePageVal = position;
-
+                setTitle(R.string.menu1);
 
                 break;
             case 2:
@@ -66,18 +66,22 @@ public class MainPage extends ActionBarActivity
                         .replace(R.id.container, statusFragment)
                         .commit();
                 BundleToGuidePageVal = position;
+                setTitle(R.string.menu2);
                 break;
             case 3:
-                tempString = "map";
+
                 BundleToGuidePageVal = position;
+                setTitle(R.string.menu3);
                 break;
             case 4:
-                tempString="usage";
+
                 BundleToGuidePageVal = position;
+                setTitle(R.string.menu4);
                 break;
             case 5:
-                tempString = "info";
+
                 BundleToGuidePageVal = position;
+                setTitle(R.string.menu5);
                 break;
 
         }
@@ -87,19 +91,19 @@ public class MainPage extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.menu1);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = getString(R.string.menu2);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.menu3);
                 break;
             case 4:
-                mTitle ="Usage";
+                mTitle =getString(R.string.menu4);
                 break;
             case 5:
-                mTitle ="Info";
+                mTitle =getString(R.string.menu5);
                 break;
         }
     }
@@ -107,8 +111,11 @@ public class MainPage extends ActionBarActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+        //actionBar.setDisplayShowTitleEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(true);
+        //actionBar.setLogo(R.drawable.btnback);
+        //actionBar.setTitle(mTitle);
     }
 
 
@@ -143,9 +150,7 @@ public class MainPage extends ActionBarActivity
 
         }
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -178,7 +183,9 @@ public class MainPage extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            int[] imageRes = {R.drawable.fox,R.drawable.fox,R.drawable.logo,R.drawable.logo,R.drawable.logo};
+            int[] imageRes = {R.drawable.polarbear,R.drawable.chimpazees,R.drawable.macaw,R.drawable.fox,R.drawable.panda,
+                    R.drawable.seal,R.drawable.gorilla,
+                    R.drawable.redpanda,R.drawable.sloth};
             View rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
             ListView mainpagelistview = (ListView)rootView.findViewById(R.id.fragment_main_page_listview);
             mainpagelistview.setAdapter(new CustomerbaseadAdapter(getActivity(),imageRes));

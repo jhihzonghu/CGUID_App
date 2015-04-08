@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  */
 public class StatusFragment extends Fragment {
     public StatusFragment(){}
-
+    //public static StatusFragment newInstance(){};
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
            View rootview = inflater.inflate(R.layout.loadpage,container,false);

@@ -1,6 +1,6 @@
 package cc.jhz.cgup;
 
-import android.content.Intent;
+//import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -50,6 +50,7 @@ public class NavigationDrawerFragment extends Fragment {
     private NavigationDrawerCallbacks mCallbacks;
 
     /**
+     *
      * Helper component that ties the action bar to the navigation drawer.
      */
     private ActionBarDrawerToggle mDrawerToggle;
@@ -61,7 +62,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-    int[] imageRes = {R.drawable.fox,R.drawable.fox,R.drawable.logo,R.drawable.logo,R.drawable.logo};
+    int[] imageRes = {R.drawable.btnmenu1,R.drawable.btnmenu2,R.drawable.btnmenu3,R.drawable.btnmenu4,R.drawable.btnmenu5};
     public NavigationDrawerFragment()
     {
     }
@@ -129,6 +130,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setLogo(R.drawable.btnback);
         actionBar.setHomeButtonEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -235,8 +237,8 @@ public class NavigationDrawerFragment extends Fragment {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(R.menu.global, menu);
-            showGlobalContextActionBar();
+            inflater.inflate(R.menu.main_page, menu);
+            //showGlobalContextActionBar();
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -272,8 +274,9 @@ public class NavigationDrawerFragment extends Fragment {
     private void showGlobalContextActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(R.string.app_name);
+       // actionBar.setTitle(R.string.app_name);
     }
 
     private ActionBar getActionBar() {

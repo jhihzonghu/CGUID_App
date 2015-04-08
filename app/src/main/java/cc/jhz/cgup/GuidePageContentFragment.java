@@ -13,7 +13,7 @@ import android.widget.Toast;
  * Created by Home on 2015/3/21.
  */
 public class GuidePageContentFragment extends Fragment {
-  int[] DrawableSrc = {R.drawable.fox,R.drawable.logo,R.drawable.fox,R.drawable.logo,R.drawable.fox};
+  int[] DrawableSrc = {R.drawable.btnmenu1,R.drawable.btnmenu2,R.drawable.btnmenu3,R.drawable.btnmenu4,R.drawable.btnmenu5};
   static String Index ="index";
   static  int GlobalNum =0 ;
  public GuidePageContentFragment()
@@ -43,7 +43,9 @@ public class GuidePageContentFragment extends Fragment {
         View GuidPageContentView = inflater.inflate(R.layout.contentfragment,container,false);
         ImageView imageView = (ImageView)GuidPageContentView.findViewById(R.id.contentFragmentImg);
 
+        //Disable
         savedInstanceState = getActivity().getIntent().getExtras() ;
+
         int Position = getArguments().getInt(Index);
         imageView.setImageResource(DrawableSrc[Position]);
 

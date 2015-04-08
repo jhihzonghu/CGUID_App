@@ -1,6 +1,8 @@
 package cc.jhz.cgup;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentActivity;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -46,10 +49,19 @@ public class CustomerbaseadAdapter extends BaseAdapter {
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(FragmentActivity.LAYOUT_INFLATER_SERVICE);
         View rootview ;
         rootview = mInflater.inflate(R.layout.customlistview, null);
-            imgview = (ImageView) rootview.findViewById(R.id.customimgview);
-            imgview.setImageResource(Item[position]);
-
-
+        imgview = (ImageView) rootview.findViewById(R.id.customimgview);
+        Bitmap bitmap = readBitmap(context,Item[position]);
+        imgview.setImageBitmap(bitmap);
         return rootview;
+    }
+    //20150408 new Function resolve OOM Err (CustomerBasedAdapter->ReadBitMap())
+    public static Bitmap readBitmap(Context context, int resID)
+    {
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        opts.inPreferredConfig = Bitmap.Config.RGB_565;
+        opts.inPurgeable =true ;
+        opts.inInputShareable = true;
+        InputStream inputStream = context.getResources().openRawResource(resID);
+        return BitmapFactory.decodeStream(inputStream,null,opts);
     }
 }
