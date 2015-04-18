@@ -28,6 +28,7 @@ public class GuidePage extends Activity {
         setContentView(R.layout.guidepage);
         Button skipButton = (Button)findViewById(R.id.skipButton);
         Button nextButton = (Button)findViewById(R.id.nextButton);
+
         GuideIndex = this.getIntent().getExtras();
         GuidePosition = GuideIndex.getInt("BundleToGuidePageVal");
 

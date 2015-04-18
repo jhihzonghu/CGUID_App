@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".MainPage"/>
         <activity android:name=".GuidePage"/>
+        <activity android:name=".AnimalAnimation" android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
+        <activity android:name=".IntroAnimals"/>
     </application>
 
 </manifest>

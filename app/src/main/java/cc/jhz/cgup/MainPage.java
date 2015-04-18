@@ -20,6 +20,12 @@ import android.widget.Toast;
 
 public class MainPage extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -30,7 +36,8 @@ public class MainPage extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    int BundleToGuidePageVal = 0 ;
+    private  FragmentManager fragmentManager;
+    int BundleToGuidePageVal = 0 , position=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,33 +46,62 @@ public class MainPage extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
-
         // Set up the drawer+.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
     }
+
+    /*2015/4/19
+    *  1. MainPage.java creative two method setPosition ,getPosition and startIntent
+    * setPosition value passed by PlaceholderFragment content (listview setonclickListener).
+    *  2. if setonclicklisener event happen in PlaceholderFragment, it will call two method getPosition and startIntent in Main.java
+    * and go to IntroAnimals's Activity.
+    * */
+       public void setPosition(int position){
+        this.position = position;
+
+    }
+       public int getPosition(){
+           return position;
+       }
+       public void startIntent()
+       {
+           Intent intent = new Intent(this,IntroAnimals.class);
+           Bundle bundle = new Bundle();
+           bundle.putInt("AnimalNO",this.getPosition());
+           intent.putExtras(bundle);
+           startActivity(intent);
+       }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         String tempString  = null ;
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         switch (position+1){
             case 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
                         .commit();
                 BundleToGuidePageVal = position;
                 setTitle(R.string.menu1);
-
                 break;
             case 2:
                 StatusFragment statusFragment = new StatusFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, statusFragment)
-                        .commit();
-                BundleToGuidePageVal = position;
+                if(position==0) {
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, statusFragment.newInstance(0))
+                            .commit();
+                    BundleToGuidePageVal = position;
+                }else{
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, statusFragment.newInstance(this.getPosition()))
+                            .commit();
+                    BundleToGuidePageVal = position;
+                }
                 setTitle(R.string.menu2);
                 break;
             case 3:
@@ -111,11 +147,7 @@ public class MainPage extends ActionBarActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        //actionBar.setDisplayShowTitleEnabled(true);
-        //actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
-        //actionBar.setLogo(R.drawable.btnback);
-        //actionBar.setTitle(mTitle);
     }
 
 
@@ -145,7 +177,6 @@ public class MainPage extends ActionBarActivity
             Intent welcomeToMain= new Intent(this,GuidePage.class);
             welcomeToMain.putExtras(bundle);
             startActivity(welcomeToMain);
-
             return true;
 
         }
@@ -159,16 +190,10 @@ public class MainPage extends ActionBarActivity
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
+
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
+
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -192,7 +217,12 @@ public class MainPage extends ActionBarActivity
             mainpagelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getActivity(),"This is position:"+ position,Toast.LENGTH_LONG).show();
+
+                    // 建立一個傳值bundle 以及 跳至 IntroAnimals (傳送動物的position,以便之後抓取相對的動物圖片)
+                    MainPage mainPage = (MainPage)getActivity();
+                    mainPage.setPosition(position);
+                    mainPage.startIntent();
+
                 }
             });
             return rootView;

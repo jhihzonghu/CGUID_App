@@ -42,10 +42,6 @@ public class GuidePageContentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View GuidPageContentView = inflater.inflate(R.layout.contentfragment,container,false);
         ImageView imageView = (ImageView)GuidPageContentView.findViewById(R.id.contentFragmentImg);
-
-        //Disable
-        savedInstanceState = getActivity().getIntent().getExtras() ;
-
         int Position = getArguments().getInt(Index);
         imageView.setImageResource(DrawableSrc[Position]);
 

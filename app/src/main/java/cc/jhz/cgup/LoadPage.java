@@ -28,5 +28,16 @@ public class LoadPage extends Activity   {
         timer.schedule(timerTask,1500);
 
     }
+
+    /*
+    * 2015/4/19
+    * 1. debug : this activity will finish after it go to MainPage
+    *
+    * */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
 }
 
