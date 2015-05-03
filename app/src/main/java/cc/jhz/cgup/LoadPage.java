@@ -37,7 +37,7 @@ public class LoadPage extends Activity   {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        finish();
+        this.finish();
     }
 }
 
