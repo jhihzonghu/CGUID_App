@@ -20,6 +20,8 @@ public class Pre_DialogFrament extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        AdoptionInfoDialogFrament adoptionInfoDialogFrament = new AdoptionInfoDialogFrament();
+                        adoptionInfoDialogFrament.show(getActivity().getSupportFragmentManager(),"DialogFragment");
                     }
                 })
                 .setNegativeButton("BACK", new DialogInterface.OnClickListener() {
