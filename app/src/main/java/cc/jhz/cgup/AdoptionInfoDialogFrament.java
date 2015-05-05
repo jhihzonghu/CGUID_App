@@ -21,6 +21,15 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
     private IntroAnimals introAnimals = new IntroAnimals();
     private Boolean ISScreenOn = true;
     private Context context;
+    public AdoptionInfoDialogFrament(){};
+    public static AdoptionInfoDialogFrament newInstance(int AnimalNO)
+    {
+        Bundle bundle = new Bundle();
+        bundle.putInt("AnimalNO", AnimalNO);
+        AdoptionInfoDialogFrament adoptionInfoDialogFrament = new AdoptionInfoDialogFrament();
+        adoptionInfoDialogFrament.setArguments(bundle);
+        return  adoptionInfoDialogFrament;
+    }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -32,12 +41,10 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
                 .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         ((IntroAnimals)getActivity()).LKScreenisOK();
 
-                        //Intent startScreenService = new Intent(getDialog().getContext(), ScreenService.class);
-                        //getActivity().startService(startScreenService);
-                        /*87*/
+
+
                     }
                 })
                 .setNegativeButton("BACK", new DialogInterface.OnClickListener() {

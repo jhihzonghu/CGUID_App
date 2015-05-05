@@ -6,10 +6,23 @@ import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
 import android.app.Dialog;
 import android.app.AlertDialog;
+import android.widget.Toast;
+
 /**
  * Created by jhihzonghu on 2015/5/3.
  */
 public class Pre_DialogFrament extends DialogFragment {
+    public Pre_DialogFrament(){};
+
+    public static Pre_DialogFrament newInstance(int AnimalNO)
+    {
+        Pre_DialogFrament pre_dialogFrament = new Pre_DialogFrament();
+        Bundle bundle = new Bundle();
+        bundle.putInt("AnaimalNO",AnimalNO);
+        pre_dialogFrament.setArguments(bundle);
+        return  pre_dialogFrament;
+    }
+
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new AlertDialog.Builder(getActivity())
@@ -19,9 +32,8 @@ public class Pre_DialogFrament extends DialogFragment {
                 .setPositiveButton("Next", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         AdoptionInfoDialogFrament adoptionInfoDialogFrament = new AdoptionInfoDialogFrament();
-                        adoptionInfoDialogFrament.show(getActivity().getSupportFragmentManager(),"DialogFragment");
+                        adoptionInfoDialogFrament.show(getActivity().getSupportFragmentManager(), "DialogFragment");
                     }
                 })
                 .setNegativeButton("BACK", new DialogInterface.OnClickListener() {

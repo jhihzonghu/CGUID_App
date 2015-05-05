@@ -1,7 +1,6 @@
 package cc.jhz.cgup;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -21,27 +20,23 @@ public class IntroAnimals extends FragmentActivity {
     private boolean LKScreenON = false;
     private Button GoToAnimalAmination;
     private TextView textView;
-    private Bundle bundle;
-    private int c;
-    private Intent startScreenService;
-    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private int AnimalNO;
+    private Intent GoToGifContainer, KeepServiceOn;
+    private MainPage mainPage = new MainPage();
+
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stopService(startScreenService);
-    }
-
-    @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.introanimals);
-
+        GoToGifContainer = this.getIntent();
+        AnimalNO =GoToGifContainer.getExtras().getInt("AnimalNO");
+        GoToGifContainer.putExtra("AnimalNO", AnimalNO);
         initWidget();
         setScrollTxtView();
-        getExtraValue();
+        setExtraValue();
 
-        Toast.makeText(this, "AnimalNO" + c, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "AnimalNO" + AnimalNo, Toast.LENGTH_SHORT).show();
         if (this.getLKScreenON()) {
             GoToAnimalAmination.setEnabled(false);
         } else {
@@ -53,11 +48,14 @@ public class IntroAnimals extends FragmentActivity {
     }
 
     private void AdoptionProcess() {
+
         GoToAnimalAmination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Pre_DialogFrament pre_dialogFrament = new Pre_DialogFrament();
-                pre_dialogFrament.show(fragmentManager, "Dialog frament");
+
+
+                pre_dialogFrament.show(getSupportFragmentManager(), "dlg");
             }
         });
     }
@@ -72,22 +70,30 @@ public class IntroAnimals extends FragmentActivity {
         textView.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
-    private void getExtraValue() {
-        bundle = this.getIntent().getExtras();
-        c = bundle.getInt("AnimalNO");
+    public void setExtraValue()
+    {
+        this.AnimalNO = this.getIntent().getExtras().getInt("AnimalNO");
+    }
+    public int getExtraValue() {
+
+        return this.AnimalNO;
     }
 
     public void LKScreenisOK() {
 
-        Toast.makeText(this, "LKScreenIsOK", Toast.LENGTH_SHORT).show();
-        startScreenService = new Intent(this,ScreenService.class);
-        startService(startScreenService);
+      // Toast.makeText(this, "IntroAnimals"+AnimalNO, Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(this, "onRestart"+AnimalNO, Toast.LENGTH_SHORT).show();
+       // setResult(Activity.RESULT_OK, GoToGifContainer);
+        Bundle bundle = new Bundle();
+        bundle.putInt("AnimalNO",getExtraValue());
+        KeepServiceOn = new Intent(this,AnimationContainer.class);
+        KeepServiceOn.putExtras(bundle);
+        startActivity(KeepServiceOn);
+        //startActivity(GoToGifContainer);
 
     }
 
-    public void setLKScreenON(boolean lkScreenON) {
-        this.LKScreenON = lkScreenON;
-    }
 
     public boolean getLKScreenON() {
         return this.LKScreenON;

@@ -15,15 +15,15 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import cc.jhz.cgup.service.ScreenService;
 
 
 public class MainPage extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-    @Override
-    protected void onPause() {
-        super.onPause();
 
-    }
+
 
 
     /**
@@ -35,12 +35,17 @@ public class MainPage extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private Bundle bundle;
     private  FragmentManager fragmentManager;
-    int BundleToGuidePageVal = 0 , position=0;
+    private Intent KeepServiceOn ;
+    int BundleToGuidePageVal = 0 , position=0,AnimalNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+
+
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -63,17 +68,22 @@ public class MainPage extends ActionBarActivity
         this.position = position;
 
     }
-       public int getPosition(){
+       public int getPosition()
+       {
            return position;
        }
+
        public void startIntent()
        {
-           Intent intent = new Intent(this,IntroAnimals.class);
+           Intent intent = new Intent();
+           intent.setClass(this,IntroAnimals.class);
            Bundle bundle = new Bundle();
            bundle.putInt("AnimalNO",this.getPosition());
            intent.putExtras(bundle);
-           startActivity(intent);
+           startActivityForResult(intent, RESULT_OK);
        }
+
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -96,8 +106,9 @@ public class MainPage extends ActionBarActivity
                             .commit();
                     BundleToGuidePageVal = position;
                 }else{
+                    AnimalAnimation animalAnimation = new AnimalAnimation();
                     fragmentManager.beginTransaction()
-                            .replace(R.id.container, statusFragment.newInstance(this.getPosition()))
+                            .replace(R.id.container, animalAnimation.newInstance(0))
                             .commit();
                     BundleToGuidePageVal = position;
                 }
@@ -122,7 +133,14 @@ public class MainPage extends ActionBarActivity
         }
 
     }
+    public void SetAnimalNo(int AnimalNO)
+    {
+        this.AnimalNo = AnimalNO;
+    }
 
+    public int getAnimalNo(){
+        return this.AnimalNo;
+    }
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
@@ -149,6 +167,18 @@ public class MainPage extends ActionBarActivity
         actionBar.setDisplayUseLogoEnabled(true);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    if( resultCode == Activity.RESULT_OK)
+    {
+      Bundle bundle = data.getExtras();
+        KeepServiceOn.putExtras(bundle);
+        KeepServiceOn = new Intent(this, ScreenService.class);
+        startService(KeepServiceOn);
+
+    }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -185,10 +215,22 @@ public class MainPage extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+           int AnimalNo = ((MainPage)getActivity()).getAnimalNo();
+        }
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -207,20 +249,25 @@ public class MainPage extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            int[] imageRes = {R.drawable.polarbear,R.drawable.chimpazees,R.drawable.macaw,R.drawable.fox,R.drawable.panda,
-                    R.drawable.seal,R.drawable.gorilla,
-                    R.drawable.redpanda,R.drawable.sloth};
+            int[] imageRes = {
+                    R.drawable.polarbear,R.drawable.chimpazees,R.drawable.macaw,
+                    R.drawable.fox,R.drawable.panda,R.drawable.seal,
+                    R.drawable.gorilla, R.drawable.redpanda,R.drawable.sloth};
+
             View rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
             ListView mainpagelistview = (ListView)rootView.findViewById(R.id.fragment_main_page_listview);
             mainpagelistview.setAdapter(new CustomerbaseadAdapter(getActivity(),imageRes));
             mainpagelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    // 建立一個傳值bundle 以及 跳至 IntroAnimals (傳送動物的position,以便之後抓取相對的動物圖片)
-                    MainPage mainPage = (MainPage)getActivity();
-                    mainPage.setPosition(position);
-                    mainPage.startIntent();
+            // 建立一個傳值bundle 以及 跳至 IntroAnimals (傳送動物的position,以便之後抓取相對的動物圖片)
+            //
+                    Intent intent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("AnimalNO", position);
+                    intent.putExtras(bundle);
+                    intent.setClass(getActivity().getApplicationContext(), IntroAnimals.class);
+                    getActivity().startActivityForResult(intent, RESULT_OK);
 
                 }
             });

@@ -19,6 +19,7 @@ public class ScreenService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
         broadcastReceiver = new ScreenMonitor();
