@@ -2,6 +2,7 @@ package cc.jhz.cgup;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.MissingFormatArgumentException;
 
 import cc.jhz.cgup.service.ScreenService;
 
@@ -53,8 +56,6 @@ public class IntroAnimals extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 Pre_DialogFrament pre_dialogFrament = new Pre_DialogFrament();
-
-
                 pre_dialogFrament.show(getSupportFragmentManager(), "dlg");
             }
         });
@@ -80,20 +81,16 @@ public class IntroAnimals extends FragmentActivity {
     }
 
     public void LKScreenisOK() {
-
-      // Toast.makeText(this, "IntroAnimals"+AnimalNO, Toast.LENGTH_SHORT).show();
-
-        //Toast.makeText(this, "onRestart"+AnimalNO, Toast.LENGTH_SHORT).show();
-       // setResult(Activity.RESULT_OK, GoToGifContainer);
-        Bundle bundle = new Bundle();
-        bundle.putInt("AnimalNO",getExtraValue());
-        KeepServiceOn = new Intent(this,AnimationContainer.class);
-        KeepServiceOn.putExtras(bundle);
-        startActivity(KeepServiceOn);
-        //startActivity(GoToGifContainer);
-
+        WritetoSharedPref();
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
     }
-
+   private void WritetoSharedPref()
+   {
+       SharedPreferences.Editor editor= getSharedPreferences("data",MODE_PRIVATE).edit();
+       editor.putString("AnimalNO", "" + getExtraValue());
+       editor.commit();
+   }
 
     public boolean getLKScreenON() {
         return this.LKScreenON;

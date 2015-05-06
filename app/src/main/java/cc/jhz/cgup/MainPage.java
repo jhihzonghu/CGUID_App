@@ -2,11 +2,13 @@ package cc.jhz.cgup;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,13 +20,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import cc.jhz.cgup.service.ScreenService;
+import cc.jhz.cgup.service.ScreenService2;
 
 
 public class MainPage extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+   public void KeepService()
+   {
+   }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(intent);
+    }
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -37,7 +46,7 @@ public class MainPage extends ActionBarActivity
     private CharSequence mTitle;
     private Bundle bundle;
     private  FragmentManager fragmentManager;
-    private Intent KeepServiceOn ;
+    private Intent KeepServiceOn ,intent;
     int BundleToGuidePageVal = 0 , position=0,AnimalNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +181,7 @@ public class MainPage extends ActionBarActivity
         super.onActivityResult(requestCode, resultCode, data);
     if( resultCode == Activity.RESULT_OK)
     {
-      Bundle bundle = data.getExtras();
+        Bundle bundle = data.getExtras();
         KeepServiceOn.putExtras(bundle);
         KeepServiceOn = new Intent(this, ScreenService.class);
         startService(KeepServiceOn);
@@ -215,10 +224,51 @@ public class MainPage extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("data", MODE_PRIVATE);
+        String animal =  preferences.getString("AnimalNO", "");
+        Toast.makeText(this,"ONRESTART"+animal,Toast.LENGTH_LONG).show();
+        if(!animal.equals(""))
+        {
+            Intent intent = new Intent(this,ScreenService.class);
+            startService(intent);
+           // Intent intent1 = new Intent(this,AnimationContainer.class);
+           // startActivity(intent1);
+        }else
+        {
+            Toast.makeText(this,"NO ADOPTION",Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK)
+        {
+            Intent intent = new Intent(this,MainPage.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
+
+    }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onRestart() {
+        super.onRestart();
+        SharedPreferences preferences = getSharedPreferences("data", MODE_PRIVATE);
+        String animal =  preferences.getString("AnimalNO", "");
+        Toast.makeText(this,"ONRESTART"+animal,Toast.LENGTH_LONG).show();
+        if(!animal.equals(""))
+        {
+            Intent intent = new Intent(this,ScreenService.class);
+            startService(intent);
+        }else
+        {
+            Toast.makeText(this,"NO ADOPTION",Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
