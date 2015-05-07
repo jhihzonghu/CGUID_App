@@ -26,7 +26,7 @@ public class ScreenService2 extends Service {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         chatHead = new GifImageView(this);
-        chatHead.setImageResource(R.drawable.polorgif);
+        chatHead.setImageResource(R.drawable.p);
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,

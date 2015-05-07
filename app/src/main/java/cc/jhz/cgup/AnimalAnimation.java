@@ -20,9 +20,9 @@ public class AnimalAnimation extends Fragment {
     int position ;
     private GifImageView gifImageView;
     private int[]  GifImgRes = {
-            R.drawable.polorgif,R.drawable.polorgif,R.drawable.polorgif,
-            R.drawable.polorgif,R.drawable.polorgif,R.drawable.polorgif,
-            R.drawable.polorgif,R.drawable.polorgif,R.drawable.polorgif
+            R.drawable.p,R.drawable.p,R.drawable.p,
+            R.drawable.p,R.drawable.p,R.drawable.p,
+            R.drawable.p,R.drawable.p,R.drawable.p
     };
     public AnimalAnimation(){}
     public static AnimalAnimation newInstance(int index)

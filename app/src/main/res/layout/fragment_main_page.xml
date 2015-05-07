@@ -10,6 +10,8 @@
 
     <ListView
         android:layout_width="match_parent"
+        android:paddingRight="45dp"
+        android:paddingLeft="45dp"
         android:layout_height="match_parent"
         android:id="@+id/fragment_main_page_listview"
         android:scrollingCache="true"

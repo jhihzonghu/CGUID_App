@@ -142,14 +142,10 @@ public class MainPage extends ActionBarActivity
         }
 
     }
-    public void SetAnimalNo(int AnimalNO)
-    {
-        this.AnimalNo = AnimalNO;
-    }
-
     public int getAnimalNo(){
         return this.AnimalNo;
     }
+
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
@@ -172,7 +168,9 @@ public class MainPage extends ActionBarActivity
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.customactionbar);
         actionBar.setDisplayUseLogoEnabled(true);
     }
 
