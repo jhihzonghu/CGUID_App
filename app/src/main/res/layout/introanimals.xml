@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="#A5DAED"
+    android:paddingLeft="55px"
+    android:paddingRight="55px"
     >
 
     <LinearLayout
@@ -18,9 +20,11 @@
             android:layout_weight="7"
             >
 
-            <ImageView
+            <pl.droidsonroids.gif.GifImageView
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:src="@drawable/polaradopt"
                 android:id="@+id/introanimalsImg" />
 
         </LinearLayout>
@@ -36,14 +40,16 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 >
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:text="Check Animals"
+                    android:text="ADOPT"
+                    android:textColor="#FFFFFF"
+                    android:background="#1187BB"
                     android:id="@+id/GoToAnimalsAnimation" />
             </LinearLayout>
 
@@ -51,89 +57,41 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-
-                android:layout_weight="1.5">
+                android:layout_weight="3">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:weightSum="2"
                     android:layout_height="0dp">
-
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:weightSum="2"
-                        android:layout_height="match_parent" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text=">>ARTICLE"
-                            android:id="@+id/textView4" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text=">>VULNERABLE"
-                            android:id="@+id/textView5" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:weightSum="2"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text=">>POLAR REGIONS"
-                            android:id="@+id/textView" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text=">>20,000 - 25,000"
-                            android:id="@+id/textView2" />
-
-                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/phonimalsstatus_01"
+                        android:id="@+id/imageView2" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:weightSum="2"
-
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="2"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:textStyle="bold"
                         android:background="#FFFFFF"
-                        android:scrollbars="vertical"
+
                         android:singleLine="false"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="北極熊，又稱白熊，是在北極圈裡土生土長的熊，牠是陸上最龐大的肉食動物。
-北極熊作為最大型的陸上肉食動物，其擁有兩倍於老虎的體積及兩倍於獅子的重量，成年雄性北極熊大約重400至600公斤，最極端的甚至超過800公斤。成年雌性北極熊的體積大約為雄性的一半，而其重量則大約為200至300公斤。成年雄性北極熊大約高2.4至2.6米，而成年雌性北極熊則大約高1.9至2.1米。剛出生的北極熊大約只重600至700克。"
+                        android:text="The loss of sea ice habitat from climate
+change is the biggest threat to the sur-
+vival of polar bears. Other key threats
+include polar bear-human conflicts,
+overharvesting and industrial impacts."
                         android:id="@+id/Introanimal_txt" />
 
                 </LinearLayout>
@@ -143,4 +101,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

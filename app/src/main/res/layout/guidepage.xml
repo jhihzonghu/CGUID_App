@@ -7,22 +7,48 @@
     android:background="#3D3A39"
     android:weightSum="10">
 
-    <FrameLayout
+    <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:weightSum="1"
-        android:id="@+id/LayoutForFragment"
-        android:layout_weight="9">
+        android:paddingLeft="55dp"
+        android:paddingRight="55dp"
+        android:layout_weight="7"
+        >
+
+        <FrameLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/LayoutForFragment"
+           >
 
 
 
-    </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/textView3" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
         android:weightSum="1"
         android:layout_weight="1">
 
@@ -37,6 +63,10 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Skip"
+                android:background="#00000000"
+                android:textColor="#6FADDF"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/skipButton"
                  />
 
@@ -58,6 +88,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:textColor="#6FADDF"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Next"
                 android:id="@+id/nextButton" />
         </LinearLayout>

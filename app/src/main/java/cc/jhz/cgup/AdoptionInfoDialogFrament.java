@@ -1,18 +1,13 @@
 package cc.jhz.cgup;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
-
-import cc.jhz.cgup.service.ScreenService;
 
 /**
  * Created by jhihzonghu on 2015/5/4.

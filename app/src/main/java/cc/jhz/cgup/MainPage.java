@@ -298,9 +298,9 @@ public class MainPage extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             int[] imageRes = {
-                    R.drawable.polarbear,R.drawable.chimpazees,R.drawable.macaw,
-                    R.drawable.fox,R.drawable.panda,R.drawable.seal,
-                    R.drawable.gorilla, R.drawable.redpanda,R.drawable.sloth};
+                    R.drawable.phnimalsanimals_01,R.drawable.phnimalsanimals_02
+                    ,R.drawable.phnimalsanimals_03,R.drawable.phnimalsanimals_04
+                   };
 
             View rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
             ListView mainpagelistview = (ListView)rootView.findViewById(R.id.fragment_main_page_listview);

@@ -13,7 +13,9 @@ import android.widget.Toast;
  * Created by Home on 2015/3/21.
  */
 public class GuidePageContentFragment extends Fragment {
-  int[] DrawableSrc = {R.drawable.btnmenu1,R.drawable.btnmenu2,R.drawable.btnmenu3,R.drawable.btnmenu4,R.drawable.btnmenu5};
+  int[] DrawableSrc = {
+          R.drawable.phonimals_q1,R.drawable.phonimals_q2,
+          R.drawable.phonimals_q3,R.drawable.phonimals_q4};
   static String Index ="index";
   static  int GlobalNum =0 ;
  public GuidePageContentFragment()

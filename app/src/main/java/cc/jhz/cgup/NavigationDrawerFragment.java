@@ -62,7 +62,8 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-    int[] imageRes = {R.drawable.btnmenu1,R.drawable.btnmenu2,R.drawable.btnmenu3,R.drawable.btnmenu4,R.drawable.btnmenu5};
+    int[] imageRes =
+            {R.drawable.phonimalsmenuicon1,R.drawable.phonimalsmenuicon2,R.drawable.phonimalsmenuicon3};
     public NavigationDrawerFragment()
     {
     }
