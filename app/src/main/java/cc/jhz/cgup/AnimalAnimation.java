@@ -37,7 +37,7 @@ public class AnimalAnimation extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        position = getArguments().getInt("Index");
     }
 
     @Nullable
@@ -45,9 +45,7 @@ public class AnimalAnimation extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.amination, container, false);
         gifImageView = (GifImageView)rootview.findViewById(R.id.animationImg);
-        position = getArguments().getInt("Index");
-        final int h =position;
-        gifImageView.setImageResource(GifImgRes[h]);
+        gifImageView.setImageResource(GifImgRes[position]);
         return rootview;
 
     }

@@ -25,15 +25,6 @@ import cc.jhz.cgup.service.ScreenService2;
 
 public class MainPage extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-   public void KeepService()
-   {
-   }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stopService(intent);
-    }
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -43,17 +34,13 @@ public class MainPage extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    private CharSequence mTitle;
-    private Bundle bundle;
+    private CharSequence mTitle;;
     private  FragmentManager fragmentManager;
-    private Intent KeepServiceOn ,intent;
-    int BundleToGuidePageVal = 0 , position=0,AnimalNo;
+    int BundleToGuidePageVal = 0 , Position2,AnimalNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-
-
 
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -73,65 +60,30 @@ public class MainPage extends ActionBarActivity
     *  2. if setonclicklisener event happen in PlaceholderFragment, it will call two method getPosition and startIntent in Main.java
     * and go to IntroAnimals's Activity.
     * */
-       public void setPosition(int position){
-        this.position = position;
-
-    }
-       public int getPosition()
-       {
-           return position;
-       }
-
-       public void startIntent()
-       {
-           Intent intent = new Intent();
-           intent.setClass(this,IntroAnimals.class);
-           Bundle bundle = new Bundle();
-           bundle.putInt("AnimalNO",this.getPosition());
-           intent.putExtras(bundle);
-           startActivityForResult(intent, RESULT_OK);
-       }
-
-
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        String tempString  = null ;
         fragmentManager = getSupportFragmentManager();
         switch (position+1){
             case 1:
+                PlaceholderFragment placeholderFragment = new PlaceholderFragment();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                        .replace(R.id.container, placeholderFragment)
                         .commit();
                 BundleToGuidePageVal = position;
                 setTitle(R.string.menu1);
                 break;
             case 2:
-                StatusFragment statusFragment = new StatusFragment();
-                if(position==0) {
+                CheckPos();
+
+                Toast.makeText(this,""+Position2,Toast.LENGTH_SHORT).show();
                     fragmentManager.beginTransaction()
-                            .replace(R.id.container, statusFragment.newInstance(0))
+                            .replace(R.id.container,  AnimalAnimation.newInstance(Position2))
                             .commit();
                     BundleToGuidePageVal = position;
-                }else{
-                    AnimalAnimation animalAnimation = new AnimalAnimation();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, animalAnimation.newInstance(0))
-                            .commit();
-                    BundleToGuidePageVal = position;
-                }
+
                 setTitle(R.string.menu2);
-                break;
-            case 3:
-
-                BundleToGuidePageVal = position;
-                setTitle(R.string.menu3);
-                break;
-            case 4:
-
-                BundleToGuidePageVal = position;
-                setTitle(R.string.menu4);
                 break;
             case 5:
 
@@ -213,48 +165,20 @@ public class MainPage extends ActionBarActivity
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences preferences = getSharedPreferences("data", MODE_PRIVATE);
-        String animal =  preferences.getString("AnimalNO", "");
-        Toast.makeText(this,"ONRESTART"+animal,Toast.LENGTH_LONG).show();
-        if(!animal.equals(""))
-        {
-            Intent intent = new Intent(this,ScreenService.class);
-            startService(intent);
-           // Intent intent1 = new Intent(this,AnimationContainer.class);
-           // startActivity(intent1);
-        }else
-        {
-            Toast.makeText(this,"NO ADOPTION",Toast.LENGTH_SHORT).show();
-        }
-
 
     }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK)
-        {
-            Intent intent = new Intent(this,MainPage.class);
-            startActivity(intent);
-        }
-        return super.onKeyDown(keyCode, event);
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
+    public void CheckPos()
+    {
         SharedPreferences preferences = getSharedPreferences("data", MODE_PRIVATE);
         String animal =  preferences.getString("AnimalNO", "");
-        Toast.makeText(this,"ONRESTART"+animal,Toast.LENGTH_LONG).show();
-        if(!animal.equals(""))
+        if(animal.equals(""))
         {
-            Intent intent = new Intent(this,ScreenService.class);
-            startService(intent);
-        }else
-        {
-            Toast.makeText(this,"NO ADOPTION",Toast.LENGTH_SHORT).show();
+            Position2 = 0 ;
         }
-
+        else
+        {
+            Position2 = Integer.valueOf(animal);
+        }
 
     }
 
@@ -265,7 +189,6 @@ public class MainPage extends ActionBarActivity
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-           int AnimalNo = ((MainPage)getActivity()).getAnimalNo();
         }
 
         private static final String ARG_SECTION_NUMBER = "section_number";
@@ -280,6 +203,7 @@ public class MainPage extends ActionBarActivity
         }
 
         public PlaceholderFragment() {
+
         }
 
         @Override
@@ -289,14 +213,12 @@ public class MainPage extends ActionBarActivity
                     R.drawable.phnimalsanimals_01,R.drawable.phnimalsanimals_02
                     ,R.drawable.phnimalsanimals_03,R.drawable.phnimalsanimals_04
                    };
-
             View rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
             ListView mainpagelistview = (ListView)rootView.findViewById(R.id.fragment_main_page_listview);
             mainpagelistview.setAdapter(new CustomerbaseadAdapter(getActivity(),imageRes));
             mainpagelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                     getActivity().getSupportFragmentManager().
                             beginTransaction()
                             .replace(R.id.container, new IntroAnimals().newInstance(position)).commit();
@@ -309,8 +231,8 @@ public class MainPage extends ActionBarActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((MainPage) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
+            //((MainPage) activity).onSectionAttached(
+                //    getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 

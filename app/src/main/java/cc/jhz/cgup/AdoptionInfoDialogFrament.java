@@ -37,9 +37,10 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences.Editor editor= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE).edit();
-                        editor.putString("AnimalNO", "" + index);
+                        editor.putString("AnimalNO", ""+index);
                         editor.commit();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new AnimalAnimation().newInstance(index)).commit();
+                        StartAnimation();
+
                     }
                 })
                 .setNegativeButton("BACK", new DialogInterface.OnClickListener() {
@@ -50,7 +51,12 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
                 });
         return builder.create();
     }
-
+    private void StartAnimation(){
+        SharedPreferences preferences = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        String animal =  preferences.getString("AnimalNO", "");
+        int Position2 = Integer.valueOf(animal);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new AnimalAnimation().newInstance(Position2)).commit();
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
