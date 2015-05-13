@@ -174,18 +174,6 @@ public class MainPage extends ActionBarActivity
         actionBar.setDisplayUseLogoEnabled(true);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    if( resultCode == Activity.RESULT_OK)
-    {
-        Bundle bundle = data.getExtras();
-        KeepServiceOn.putExtras(bundle);
-        KeepServiceOn = new Intent(this, ScreenService.class);
-        startService(KeepServiceOn);
-
-    }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -308,14 +296,10 @@ public class MainPage extends ActionBarActivity
             mainpagelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            // 建立一個傳值bundle 以及 跳至 IntroAnimals (傳送動物的position,以便之後抓取相對的動物圖片)
-            //
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("AnimalNO", position);
-                    intent.putExtras(bundle);
-                    intent.setClass(getActivity().getApplicationContext(), IntroAnimals.class);
-                    getActivity().startActivityForResult(intent, RESULT_OK);
+
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction()
+                            .replace(R.id.container, new IntroAnimals().newInstance(position)).commit();
 
                 }
             });

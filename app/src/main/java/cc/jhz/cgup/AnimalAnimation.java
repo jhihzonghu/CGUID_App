@@ -20,9 +20,8 @@ public class AnimalAnimation extends Fragment {
     int position ;
     private GifImageView gifImageView;
     private int[]  GifImgRes = {
-            R.drawable.p,R.drawable.p,R.drawable.p,
-            R.drawable.p,R.drawable.p,R.drawable.p,
-            R.drawable.p,R.drawable.p,R.drawable.p
+            R.drawable.polar_walk,R.drawable.fox_walk,
+            R.drawable.beluga, R.drawable.walrus,
     };
     public AnimalAnimation(){}
     public static AnimalAnimation newInstance(int index)
@@ -48,7 +47,6 @@ public class AnimalAnimation extends Fragment {
         gifImageView = (GifImageView)rootview.findViewById(R.id.animationImg);
         position = getArguments().getInt("Index");
         final int h =position;
-        Toast.makeText(getActivity().getApplicationContext(),"Gif Index:"+position,Toast.LENGTH_SHORT);
         gifImageView.setImageResource(GifImgRes[h]);
         return rootview;
 

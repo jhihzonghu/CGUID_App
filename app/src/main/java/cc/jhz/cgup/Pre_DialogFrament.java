@@ -12,17 +12,22 @@ import android.widget.Toast;
  * Created by jhihzonghu on 2015/5/3.
  */
 public class Pre_DialogFrament extends DialogFragment {
+    private int AnimalNO;
     public Pre_DialogFrament(){};
-
     public static Pre_DialogFrament newInstance(int AnimalNO)
     {
         Pre_DialogFrament pre_dialogFrament = new Pre_DialogFrament();
         Bundle bundle = new Bundle();
-        bundle.putInt("AnaimalNO",AnimalNO);
+        bundle.putInt("AnimalNO",AnimalNO);
         pre_dialogFrament.setArguments(bundle);
         return  pre_dialogFrament;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AnimalNO = getArguments().getInt("AnimalNO");
+    }
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new AlertDialog.Builder(getActivity())
@@ -32,7 +37,7 @@ public class Pre_DialogFrament extends DialogFragment {
                 .setPositiveButton("Next", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        AdoptionInfoDialogFrament adoptionInfoDialogFrament = new AdoptionInfoDialogFrament();
+                        AdoptionInfoDialogFrament adoptionInfoDialogFrament = new AdoptionInfoDialogFrament().newInstance(AnimalNO);
                         adoptionInfoDialogFrament.show(getActivity().getSupportFragmentManager(), "DialogFragment");
                     }
                 })

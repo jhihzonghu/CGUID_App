@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="preferExternal"
     package="cc.jhz.cgup" >
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:supportsRtl="true"
@@ -20,7 +22,6 @@
         <activity android:name=".MainPage"/>
         <activity android:name=".GuidePage"/>
         <activity android:name=".AnimationContainer" android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
-        <activity android:name=".IntroAnimals"/>
         <service android:name=".service.ScreenService"/>
     </application>
 

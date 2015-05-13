@@ -5,14 +5,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3D3A39"
+    android:paddingTop="27.5px"
+    android:paddingLeft="27.5px"
+    android:paddingRight="27.5px"
     android:weightSum="10">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingLeft="55dp"
-        android:paddingRight="55dp"
+
         android:layout_weight="7"
         >
 
@@ -47,8 +49,6 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
         android:weightSum="1"
         android:layout_weight="1">
 

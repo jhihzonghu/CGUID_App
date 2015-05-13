@@ -12,10 +12,14 @@ import android.widget.Toast;
 
 import java.util.zip.GZIPOutputStream;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by jhihzonghu on 2015/3/10.
  */
 public class StatusFragment extends Fragment {
+    private int index ;
+    private GifImageView gifImageView ;
     public StatusFragment(){}
     public static StatusFragment newInstance(int index)
     {
@@ -28,27 +32,16 @@ public class StatusFragment extends Fragment {
     int position;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
+        index = getArguments().getInt("AnimalNO");
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
            position = getArguments().getInt("AnimalNO");
-           Toast.makeText(getActivity(),"This animals is "+position,Toast.LENGTH_LONG).show();
-           View rootview = inflater.inflate(R.layout.introanimals,container,false);
-           Button gotoanimalanimationButton = (Button)rootview.findViewById(R.id.GoToAnimalsAnimation);
-            gotoanimalanimationButton.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   Bundle GotoAnimalAminationClass = new Bundle();
-                   GotoAnimalAminationClass.putInt("AnimalAminatonNO",position);
-                   Intent GotoAnimalAmination = new Intent(getActivity().getBaseContext(),AnimalAnimation.class);
-                   GotoAnimalAmination.putExtras(GotoAnimalAmination);
-               }
-           });
+           View rootview = inflater.inflate(R.layout.amination,container,false);
+           gifImageView = (GifImageView)rootview.findViewById(R.id.animationImg);
         return rootview;
     }
 }
