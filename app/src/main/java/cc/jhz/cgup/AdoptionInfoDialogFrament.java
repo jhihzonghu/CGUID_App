@@ -2,6 +2,7 @@ package cc.jhz.cgup;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -9,6 +10,10 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
 
 /**
  * Created by jhihzonghu on 2015/5/4.
@@ -51,15 +56,20 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
                 });
         return builder.create();
     }
-    private void StartAnimation(){
+    private void StartAnimation() {
         SharedPreferences preferences = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         String animal =  preferences.getString("AnimalNO", "");
         int Position2 = Integer.valueOf(animal);
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new AnimalAnimation().newInstance(Position2)).commit();
+
+
     }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         index = getArguments().getInt("AnimalNO") ;
+
     }
 }

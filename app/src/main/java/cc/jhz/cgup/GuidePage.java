@@ -19,8 +19,9 @@ package cc.jhz.cgup;
 public class GuidePage extends Activity {
     Bundle GuideIndex ;
     int GuidePosition=0;
-    int FunctionMAX = 4;
-
+    int FunctionMAX = 3;
+    private FragmentTransaction fragmentTransaction;
+    private FragmentManager fragmentManager;
     //FragmentManager fragmentManager ;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,13 +39,32 @@ public class GuidePage extends Activity {
         //傳遞過去。
         //第二種方法是使用Bundle再，呼叫方法的位置是在Fragment。也就是再Fragment處理bundle值。
         GuidePageContentFragment guidePageContentFragment = new GuidePageContentFragment() ;
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.LayoutForFragment, new GuidePageContentFragment().newInstance(GuidePosition)).commit();
-        initGuideIndex(nextButton);
-    }
-    public void initGuideIndex(Button nextButton)
-    {
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(GuidePosition<=FunctionMAX)
+                {
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().add(R.id.LayoutForFragment, new GuidePageContentFragment().newInstance(GuidePosition + 1)).commit();
+                }
+                else
+                {
+
+                    GuidePosition = 0 ;
+                    fragmentManager.beginTransaction().add(R.id.LayoutForFragment, new GuidePageContentFragment().newInstance(GuidePosition)).commit();
+                }
+                }
+        });
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
+
 }

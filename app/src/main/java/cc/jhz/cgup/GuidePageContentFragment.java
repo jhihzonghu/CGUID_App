@@ -46,7 +46,6 @@ public class GuidePageContentFragment extends Fragment {
         ImageView imageView = (ImageView)GuidPageContentView.findViewById(R.id.contentFragmentImg);
         int Position = getArguments().getInt(Index);
         imageView.setImageResource(DrawableSrc[Position]);
-
         return GuidPageContentView;
     }
 

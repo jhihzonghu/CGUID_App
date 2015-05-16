@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,6 +32,7 @@ import pl.droidsonroids.gif.GifImageView;
  */
 public class IntroAnimals extends Fragment {
     private Button GoToAnimalAmination;
+    private int GuidPageNumber = 6 ;
     private TextView textView;
     private ImageView imageview ;
     private int[] IntroTxt ={
@@ -54,7 +58,8 @@ public class IntroAnimals extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.introanimals, container, false);
-        Toast.makeText(getActivity().getApplicationContext(),""+index,Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getActivity().getApplicationContext(),""+GuidPageNumber,Toast.LENGTH_SHORT).show();
         initWidget(rootView);
         setWidgetValue(index);
         setScrollTxtView();
@@ -67,6 +72,13 @@ public class IntroAnimals extends Fragment {
         super.onCreate(savedInstanceState);
         index = getArguments().getInt("AnimalNO");
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_page,menu);
+
+    }
+
 
     private void AdoptionProcess() {
 

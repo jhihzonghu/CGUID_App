@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="preferExternal"
     package="cc.jhz.cgup" >
-
+    <uses-permission android:name="android.permission.SET_WALLPAPER"></uses-permission>
     <application
 
         android:allowBackup="true"

@@ -94,9 +94,7 @@ public class MainPage extends ActionBarActivity
         }
 
     }
-    public int getAnimalNo(){
-        return this.AnimalNo;
-    }
+
 
     public void onSectionAttached(int number) {
         switch (number) {
@@ -162,11 +160,6 @@ public class MainPage extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
     public void CheckPos()
     {
         SharedPreferences preferences = getSharedPreferences("data", MODE_PRIVATE);
@@ -222,6 +215,7 @@ public class MainPage extends ActionBarActivity
                     getActivity().getSupportFragmentManager().
                             beginTransaction()
                             .replace(R.id.container, new IntroAnimals().newInstance(position)).commit();
+
 
                 }
             });
