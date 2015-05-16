@@ -17,7 +17,7 @@ public class GuidePageContentFragment extends Fragment {
           R.drawable.phonimals_q1,R.drawable.phonimals_q2,
           R.drawable.phonimals_q3,R.drawable.phonimals_q4};
   static String Index ="index";
-  static  int GlobalNum =0 ;
+  static int GlobalNum =0 ;
  public GuidePageContentFragment()
  {
 

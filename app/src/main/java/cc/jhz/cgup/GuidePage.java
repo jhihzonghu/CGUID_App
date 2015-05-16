@@ -18,7 +18,7 @@ package cc.jhz.cgup;
 
 public class GuidePage extends Activity {
     Bundle GuideIndex ;
-    int GuidePosition=0;
+    int GuidePosition=0,i=0;
     int FunctionMAX = 3;
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
@@ -38,25 +38,31 @@ public class GuidePage extends Activity {
         //fragment與Activiy傳值有兩種方式，第一種再Fragment構造一個方法，再Activity呼叫Fragment的時候將變數數值
         //傳遞過去。
         //第二種方法是使用Bundle再，呼叫方法的位置是在Fragment。也就是再Fragment處理bundle值。
-        GuidePageContentFragment guidePageContentFragment = new GuidePageContentFragment() ;
+        GuidePageContentFragment guidePageContentFragment = new GuidePageContentFragment().newInstance(GuidePosition) ;
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.LayoutForFragment, new GuidePageContentFragment().newInstance(GuidePosition)).commit();
+        fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment).commit();
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(GuidePosition<=FunctionMAX)
+                i=i+1;
+                Toast.makeText(getBaseContext(),""+i+1,Toast.LENGTH_SHORT).show();
+                FragmentManager  fragmentManager1 =getFragmentManager() ;
+                GuidePageContentFragment guidePageContentFragment1 = init(i);
+                FragmentTransaction fragmentTransaction =fragmentManager1.beginTransaction();
+                if(!fragmentTransaction.isEmpty())
                 {
-                    fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().add(R.id.LayoutForFragment, new GuidePageContentFragment().newInstance(GuidePosition + 1)).commit();
+                    fragmentTransaction.remove(guidePageContentFragment1);
+                    fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
+
                 }
                 else
                 {
+                    fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
+                }
+                fragmentTransaction.commit();
+            }
 
-                    GuidePosition = 0 ;
-                    fragmentManager.beginTransaction().add(R.id.LayoutForFragment, new GuidePageContentFragment().newInstance(GuidePosition)).commit();
-                }
-                }
         });
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,5 +72,8 @@ public class GuidePage extends Activity {
         });
 
     }
-
+    public GuidePageContentFragment init(int index)
+    {
+        return new GuidePageContentFragment().newInstance(index);
+    }
 }
