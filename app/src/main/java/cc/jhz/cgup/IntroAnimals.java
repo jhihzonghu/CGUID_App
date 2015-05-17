@@ -1,30 +1,18 @@
 package cc.jhz.cgup;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.util.MissingFormatArgumentException;
-
-import cc.jhz.cgup.service.ScreenService;
 import pl.droidsonroids.gif.GifImageView;
 
 /**
@@ -33,6 +21,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class IntroAnimals extends Fragment {
     private Button GoToAnimalAmination;
     private int GuidPageNumber = 6 ;
+    private FrameLayout frameLayout ;
     private TextView textView;
     private ImageView imageview ;
     private int[] IntroTxt ={
@@ -55,11 +44,12 @@ public class IntroAnimals extends Fragment {
         introAnimals.setArguments(bundle);
         return introAnimals;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.introanimals, container, false);
 
-        Toast.makeText(getActivity().getApplicationContext(),""+GuidPageNumber,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), "" + GuidPageNumber, Toast.LENGTH_SHORT).show();
         initWidget(rootView);
         setWidgetValue(index);
         setScrollTxtView();
@@ -71,6 +61,9 @@ public class IntroAnimals extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         index = getArguments().getInt("AnimalNO");
+        frameLayout =(FrameLayout)getActivity().findViewById(R.id.container);
+        frameLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.introanimal_bkground));
+
     }
 
     @Override
@@ -109,9 +102,10 @@ public class IntroAnimals extends Fragment {
     }
 
 
-
-
-
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        frameLayout =(FrameLayout)getActivity().findViewById(R.id.container);
+        frameLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.mainpage_bkground));
+    }
 }

@@ -58,7 +58,13 @@ public class GuidePage extends Activity {
                 }
                 else
                 {
-                    fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
+                    if(i<=FunctionMAX) {
+                        fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
+                    }else{
+                        GuidePageContentFragment guidePageContentFragment2 = init(0);
+                        fragmentTransaction.remove(guidePageContentFragment1);
+                        fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
+                    }
                 }
                 fragmentTransaction.commit();
             }

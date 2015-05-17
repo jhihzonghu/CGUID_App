@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,7 +18,10 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import cc.jhz.cgup.service.ScreenService;
 import cc.jhz.cgup.service.ScreenService2;
@@ -36,17 +40,15 @@ public class MainPage extends ActionBarActivity
      */
     private CharSequence mTitle;;
     private  FragmentManager fragmentManager;
+    private TextView ActionbarTxt ;
     int BundleToGuidePageVal = 0 , Position2,AnimalNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-
-
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
-        // Set up the drawer+.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -54,12 +56,6 @@ public class MainPage extends ActionBarActivity
 
     }
 
-    /*2015/4/19
-    *  1. MainPage.java creative two method setPosition ,getPosition and startIntent
-    * setPosition value passed by PlaceholderFragment content (listview setonclickListener).
-    *  2. if setonclicklisener event happen in PlaceholderFragment, it will call two method getPosition and startIntent in Main.java
-    * and go to IntroAnimals's Activity.
-    * */
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -72,7 +68,7 @@ public class MainPage extends ActionBarActivity
                         .replace(R.id.container, placeholderFragment)
                         .commit();
                 BundleToGuidePageVal = position;
-                setTitle(R.string.menu1);
+                mTitle = "Adopt";
                 break;
             case 2:
                 CheckPos();
@@ -83,12 +79,12 @@ public class MainPage extends ActionBarActivity
                             .commit();
                     BundleToGuidePageVal = position;
 
-                setTitle(R.string.menu2);
+                mTitle = "Status";
                 break;
             case 5:
 
                 BundleToGuidePageVal = position;
-                setTitle(R.string.menu5);
+                mTitle = "Info";
                 break;
 
         }
@@ -122,7 +118,18 @@ public class MainPage extends ActionBarActivity
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.customactionbar);
         actionBar.setDisplayUseLogoEnabled(true);
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+
+        View view = layoutInflater.inflate(R.layout.customactionbar,null);
+        ActionBar.LayoutParams params = new
+                ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER_HORIZONTAL);
+        ActionbarTxt = ((TextView)view.findViewById(R.id.customActBarTxt));
+        ActionbarTxt.setText(mTitle);
+        getSupportActionBar().setCustomView(view,params);
+        actionBar.setDisplayUseLogoEnabled(true);
     }
+
 
 
     @Override
@@ -225,8 +232,7 @@ public class MainPage extends ActionBarActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            //((MainPage) activity).onSectionAttached(
-                //    getArguments().getInt(ARG_SECTION_NUMBER));
+
         }
     }
 
