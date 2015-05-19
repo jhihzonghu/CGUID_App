@@ -63,7 +63,7 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
     int[] imageRes =
-            {R.drawable.phonimalsmenuicon1,R.drawable.phonimalsmenuicon2,R.drawable.phonimalsmenuicon3};
+            {R.drawable.phonimalsmenu23,R.drawable.phonimalsmenu24,R.drawable.phonimalsmenu25};
     public NavigationDrawerFragment()
     {
     }

@@ -33,7 +33,7 @@ public class MainPage extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    private CharSequence mTitle;;
+    private String mTitle;;
     private  FragmentManager fragmentManager;
     private Typeface typeface ;
     private TextView ActionbarTxt ;
@@ -65,30 +65,34 @@ public class MainPage extends ActionBarActivity
                         .replace(R.id.container, placeholderFragment)
                         .commit();
                 BundleToGuidePageVal = position;
-                mTitle = "Adopt";
+                setmTitle("Adopt");
                 break;
             case 2:
                 CheckPos();
 
-                Toast.makeText(this,""+Position2,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "" + Position2, Toast.LENGTH_SHORT).show();
                     fragmentManager.beginTransaction()
                             .replace(R.id.container,  AnimalAnimation.newInstance(Position2))
                             .commit();
                     BundleToGuidePageVal = position;
 
-                mTitle = "Status";
+                setmTitle("Status");
                 break;
             case 5:
 
                 BundleToGuidePageVal = position;
-                mTitle = "Info";
+                setmTitle("Info");
                 break;
 
         }
 
     }
-
-
+    public void setmTitle(String mTitle1){
+        this.mTitle = mTitle1 ;
+    }
+    public String getmTitle(){
+        return mTitle ;
+    }
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
@@ -122,14 +126,14 @@ public class MainPage extends ActionBarActivity
                 ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER_HORIZONTAL);
         ActionbarTxt = ((TextView)view.findViewById(R.id.customActBarTxt));
-        typeface = Typeface.createFromAsset(getAssets(), "fonts/corbel_bold.ttf");
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/Arial.ttf");
         ActionbarTxt.setTypeface(typeface);
-        /****************************************************************/
-        /** Fuck you Zong-Jhih Hu, YOOOOOOOO~~~~ Suck Kim Jong-Un Dick.**/
-        /****************************************************************/
-        ActionbarTxt.setText(mTitle);
+        ActionbarTxt.setText(getmTitle());
         getSupportActionBar().setCustomView(view,params);
         actionBar.setDisplayUseLogoEnabled(true);
+    }
+    public void setActionbarTxt(String Name){
+        ActionbarTxt.setText(Name);
     }
 
 
@@ -212,15 +216,19 @@ public class MainPage extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             int[] imageRes = {
-                    R.drawable.phnimalsanimals_01,R.drawable.phnimalsanimals_02
-                    ,R.drawable.phnimalsanimals_03,R.drawable.phnimalsanimals_04
+                    R.drawable.phnimalsanimals011,R.drawable.phnimalsanimals021
+                    ,R.drawable.phnimalsanimals031,R.drawable.phnimalsanimals041
                    };
+            final String[] animalName = {"POLAR BEAR","ARCTIC FOX","BELUGA WHALE","WALRUS"};
+
             View rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
             ListView mainpagelistview = (ListView)rootView.findViewById(R.id.fragment_main_page_listview);
             mainpagelistview.setAdapter(new CustomerbaseadAdapter(getActivity(),imageRes));
             mainpagelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ((MainPage)getActivity()).setActionbarTxt(animalName[position]);
+
                     getActivity().getSupportFragmentManager().
                             beginTransaction()
                             .replace(R.id.container, new IntroAnimals().newInstance(position)).commit();

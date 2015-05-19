@@ -11,8 +11,8 @@
         android:background="#E8F4FA"
         android:id="@+id/container" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingRight="27.5px"
-        android:paddingLeft="27.5px"
+        android:paddingRight="30px"
+        android:paddingLeft="30px"
         />
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat

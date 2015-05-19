@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingRight="20px"
+    android:paddingLeft="20px"
     android:weightSum="8"
     >
 
@@ -9,6 +11,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         android:layout_weight="1"
         android:weightSum="2" >
 
@@ -16,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="24px"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Parent't Name:"
             android:id="@+id/Dialog_Parentnametxt" />
@@ -23,6 +27,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:textSize="24px"
             android:layout_weight="1"
             android:inputType="textPersonName"
             android:text=""
@@ -41,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="24px"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Polar bear's name:"
             android:id="@+id/dialog_BearNameTxt" />
@@ -49,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="24px"
             android:inputType="textPersonName"
             android:text=""
             android:ems="5"
@@ -66,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="24px"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Adoption Date:"
             android:id="@+id/dialog_AdopDateTxt" />
@@ -77,6 +85,7 @@
             android:inputType="textPersonName"
             android:text=""
             android:ems="5"
+            android:textSize="24px"
             android:id="@+id/dialog_AdopDateEdit" />
     </LinearLayout>
 </LinearLayout>

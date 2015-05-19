@@ -34,7 +34,7 @@ public class Pre_DialogFrament extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new AlertDialog.Builder(getActivity())
-                .setTitle("*n"+"\n"+"Thank You")
+                .setTitle("Thank You")
                 .setMessage("Thanks for your kindness for adopting me." + "\n" + "Now,you have the responsibility to take care of me,my friend" +
                         "\n\n"+"Let your phone rest for 200 hours, I will be super healthy at the same time")
                 .setPositiveButton("Next", new DialogInterface.OnClickListener() {

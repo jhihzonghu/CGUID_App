@@ -1,5 +1,6 @@
 package cc.jhz.cgup;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
@@ -95,21 +96,26 @@ public class IntroAnimals extends Fragment {
 
     }
     private void initWidget(View rootview) {
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Arial.ttf");
+        Typeface typeface1 = Typeface.createFromAsset(getActivity().getAssets(),"fonts/corbel.ttf");
         GoToAnimalAmination = (Button) rootview.findViewById(R.id.GoToAnimalsAnimation);
+        GoToAnimalAmination.setTypeface(typeface);
         textView = (TextView) rootview.findViewById(R.id.Introanimal_txt);
+        textView.setTypeface(typeface1);
         imageview = (ImageView)rootview.findViewById(R.id.IntroanimalTxtView);
         gifImageView =(GifImageView)rootview.findViewById(R.id.introanimalsImg);
     }
 
     private void setScrollTxtView() {
 
-        //DocumentView.setMovementMethod(ScrollingMovementMethod.getInstance());
+        textView.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        ((MainPage)getActivity()).setActionbarTxt(((MainPage)getActivity()).getmTitle());
         frameLayout =(FrameLayout)getActivity().findViewById(R.id.container);
         frameLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.mainpage_bkground));
     }

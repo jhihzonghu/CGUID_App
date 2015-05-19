@@ -45,14 +45,17 @@ public class GuidePageContentFragment extends Fragment {
         View GuidPageContentView = inflater.inflate(R.layout.contentfragment,container,false);
         ImageView imageView = (ImageView)GuidPageContentView.findViewById(R.id.contentFragmentImg);
         int Position = getArguments().getInt(Index);
-        if(Position>=DrawableSrc.length)
+        if(Position>DrawableSrc.length)
         {
             Position=0;
             imageView.setImageResource(DrawableSrc[Position]);
         }else {
+            //Position=0;
             Position+=1;
             imageView.setImageResource(DrawableSrc[Position]);
+
         }
+
         return GuidPageContentView;
     }
 
