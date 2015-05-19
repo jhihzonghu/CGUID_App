@@ -13,6 +13,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bluejamesbond.text.DocumentView;
+
+import org.w3c.dom.Text;
+
 import pl.droidsonroids.gif.GifImageView;
 
 /**
@@ -62,7 +67,7 @@ public class IntroAnimals extends Fragment {
         super.onCreate(savedInstanceState);
         index = getArguments().getInt("AnimalNO");
         frameLayout =(FrameLayout)getActivity().findViewById(R.id.container);
-        frameLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.introanimal_bkground));
+        frameLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.mainpage_bkground));
 
     }
 
@@ -98,7 +103,7 @@ public class IntroAnimals extends Fragment {
 
     private void setScrollTxtView() {
 
-        textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+        //DocumentView.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
 

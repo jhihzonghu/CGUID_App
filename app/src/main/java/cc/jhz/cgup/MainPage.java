@@ -3,13 +3,13 @@ package cc.jhz.cgup;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,11 +20,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import cc.jhz.cgup.service.ScreenService;
-import cc.jhz.cgup.service.ScreenService2;
 
 
 public class MainPage extends ActionBarActivity
@@ -40,6 +35,7 @@ public class MainPage extends ActionBarActivity
      */
     private CharSequence mTitle;;
     private  FragmentManager fragmentManager;
+    private Typeface typeface ;
     private TextView ActionbarTxt ;
     int BundleToGuidePageVal = 0 , Position2,AnimalNo;
     @Override
@@ -52,6 +48,7 @@ public class MainPage extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
 
 
     }
@@ -125,6 +122,11 @@ public class MainPage extends ActionBarActivity
                 ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER_HORIZONTAL);
         ActionbarTxt = ((TextView)view.findViewById(R.id.customActBarTxt));
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/corbel_bold.ttf");
+        ActionbarTxt.setTypeface(typeface);
+        /****************************************************************/
+        /** Fuck you Zong-Jhih Hu, YOOOOOOOO~~~~ Suck Kim Jong-Un Dick.**/
+        /****************************************************************/
         ActionbarTxt.setText(mTitle);
         getSupportActionBar().setCustomView(view,params);
         actionBar.setDisplayUseLogoEnabled(true);
