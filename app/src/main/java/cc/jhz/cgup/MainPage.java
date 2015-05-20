@@ -1,8 +1,10 @@
 package cc.jhz.cgup;
 
 import android.app.Activity;
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Movie;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -21,6 +23,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 
 public class MainPage extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -33,11 +38,12 @@ public class MainPage extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    private String mTitle;;
+    private String mTitle="ADOPT";
     private  FragmentManager fragmentManager;
     private Typeface typeface ;
     private TextView ActionbarTxt ;
     int BundleToGuidePageVal = 0 , Position2,AnimalNo;
+    private Intent STARTGIF ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +58,31 @@ public class MainPage extends ActionBarActivity
 
 
     }
+    private void initWallpaperAccordingtoTime(InputStream inputStream) {
+        final Movie wallpaperGifStream ;
+        final int duration;
+        if (inputStream != null) {
+            try {
+                wallpaperGifStream = Movie.decodeStream(inputStream);
+                if (wallpaperGifStream != null) {
+                    duration = wallpaperGifStream.duration();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
+    }
+    public void StartGIFService(){
+      
+
+    }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -65,7 +95,7 @@ public class MainPage extends ActionBarActivity
                         .replace(R.id.container, placeholderFragment)
                         .commit();
                 BundleToGuidePageVal = position;
-                setmTitle("Adopt");
+                setmTitle("ADOPT");
                 break;
             case 2:
                 CheckPos();
@@ -76,12 +106,12 @@ public class MainPage extends ActionBarActivity
                             .commit();
                     BundleToGuidePageVal = position;
 
-                setmTitle("Status");
+                setmTitle("STATUS");
                 break;
             case 5:
 
                 BundleToGuidePageVal = position;
-                setmTitle("Info");
+                setmTitle("INFO");
                 break;
 
         }
@@ -118,7 +148,7 @@ public class MainPage extends ActionBarActivity
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.customactionbar);
-        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         LayoutInflater layoutInflater = LayoutInflater.from(this);
 
         View view = layoutInflater.inflate(R.layout.customactionbar,null);
@@ -126,7 +156,7 @@ public class MainPage extends ActionBarActivity
                 ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER_HORIZONTAL);
         ActionbarTxt = ((TextView)view.findViewById(R.id.customActBarTxt));
-        typeface = Typeface.createFromAsset(getAssets(), "fonts/Arial.ttf");
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/BELLB.ttf");
         ActionbarTxt.setTypeface(typeface);
         ActionbarTxt.setText(getmTitle());
         getSupportActionBar().setCustomView(view,params);
@@ -223,6 +253,7 @@ public class MainPage extends ActionBarActivity
 
             View rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
             ListView mainpagelistview = (ListView)rootView.findViewById(R.id.fragment_main_page_listview);
+
             mainpagelistview.setAdapter(new CustomerbaseadAdapter(getActivity(),imageRes));
             mainpagelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

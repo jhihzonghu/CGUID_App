@@ -42,7 +42,7 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
         typeface = Typeface.createFromAsset(getActivity().getAssets(),"fonts/corbel.ttf");
         textView = (TextView)view.findViewById(R.id.dialog_AdopDateTxt);
         textView2 = (TextView)view.findViewById(R.id.dialog_BearNameTxt);
-        textView = (TextView)view.findViewById(R.id.Dialog_Parentnametxt);
+        textView1 = (TextView)view.findViewById(R.id.Dialog_Parentnametxt);
         textView.setTypeface(typeface);
         textView1.setTypeface(typeface);
         textView2.setTypeface(typeface);

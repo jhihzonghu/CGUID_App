@@ -29,7 +29,7 @@ public class GuidePage extends Activity {
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
     private String[] GuideContent= {"Step 1 : Click the animal you like.",
-            "Step 2 : After realizing each animal’s status and threads,you can decide to adopt or not.",
+            "Step 2 : After realizing each animal’s status and threads, you can decide to adopt or not.",
             "Step 3 : Give your animal a name and you can keep it after that.",
             "Step 4 : you can check your animal through your live wallpaper." ,
             };
@@ -54,41 +54,32 @@ public class GuidePage extends Activity {
         //fragment與Activiy傳值有兩種方式，第一種再Fragment構造一個方法，再Activity呼叫Fragment的時候將變數數值
         //傳遞過去。
         //第二種方法是使用Bundle再，呼叫方法的位置是在Fragment。也就是再Fragment處理bundle值。
-        GuidePageContentFragment guidePageContentFragment = new GuidePageContentFragment().newInstance(0) ;
+        GuidePageContentFragment guidePageContentFragment = new GuidePageContentFragment().newInstance(GuidePosition) ;
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment).commit();
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i=i+1;
-                Toast.makeText(getBaseContext(),""+i+1,Toast.LENGTH_SHORT).show();
+                GuidePosition+=1;
+                Toast.makeText(getBaseContext(),""+i,Toast.LENGTH_SHORT).show();
                 FragmentManager  fragmentManager1 =getFragmentManager() ;
-                GuidePageContentFragment guidePageContentFragment1 = init(i);
+                GuidePageContentFragment guidePageContentFragment1 = init(GuidePosition);
                 FragmentTransaction fragmentTransaction =fragmentManager1.beginTransaction();
-                if(!fragmentTransaction.isEmpty())
-                {
-                    fragmentTransaction.remove(guidePageContentFragment1);
-                    fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
-                    textView.setTypeface(typeface);
-                    textView.setText(GuideContent[i]);
-                }
-                else
-                {
-                    if(i<=FunctionMAX) {
+                    if(GuidePosition<=FunctionMAX) {
                         fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
                         textView.setTypeface(typeface);
-                        textView.setText(GuideContent[i]);
+                        textView.setText(GuideContent[GuidePosition]);
                     }else{
+                      //  GuidePosition = 0 ;
                         GuidePageContentFragment guidePageContentFragment2 = init(0);
                         fragmentTransaction.remove(guidePageContentFragment1);
                         textView.setTypeface(typeface);
                         textView.setText(GuideContent[0]);
-                        fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment1);
+                        fragmentTransaction.add(R.id.LayoutForFragment, guidePageContentFragment2);
                     }
-                }
                 fragmentTransaction.commit();
-            }
+                }
 
         });
         skipButton.setOnClickListener(new View.OnClickListener() {

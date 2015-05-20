@@ -1,48 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_gravity="center_horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:weightSum="3"
     >
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="wrap_content">
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:padding="5px"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:singleLine="true"
+                android:textSize="45px"
+                android:text="Adopt"
+                android:gravity="center"
+                android:paddingTop="5px"
+
+                android:id="@+id/customActBarTxt"
+               />
+        </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
 
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Adopt"
-            android:gravity="center"
-            android:id="@+id/customActBarTxt"
-           />
-    </LinearLayout>
-
-</LinearLayout>

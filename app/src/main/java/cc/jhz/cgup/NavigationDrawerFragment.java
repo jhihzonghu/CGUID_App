@@ -63,7 +63,7 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
     int[] imageRes =
-            {R.drawable.phonimalsmenu23,R.drawable.phonimalsmenu24,R.drawable.phonimalsmenu25};
+            {R.drawable.phonimalsmenu26,R.drawable.phonimalsmenu27,R.drawable.phonimalsmenu28};
     public NavigationDrawerFragment()
     {
     }
@@ -100,6 +100,7 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
+        mDrawerListView.setDivider(null);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -131,7 +132,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setLogo(R.drawable.btnback);
+       // actionBar.setLogo(R.drawable.btnback);
         actionBar.setHomeButtonEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -139,7 +140,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerToggle = new ActionBarDrawerToggle(
                 getActivity(),                    /* host Activity */
                 mDrawerLayout,                    /* DrawerLayout object */
-                R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
+                R.drawable.ic_drawer62,             /* nav drawer image to replace 'Up' caret */
                 R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
                 R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
         ) {
@@ -248,10 +249,10 @@ public class NavigationDrawerFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
          if(item.getItemId()!=R.id.action_example){
-             if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
+             if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                 mDrawerLayout.closeDrawer(Gravity.LEFT);
              } else {
-                 mDrawerLayout.openDrawer(Gravity.RIGHT);
+                 mDrawerLayout.openDrawer(Gravity.LEFT);
              }
              return false;
          }

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="20px"
-    android:paddingLeft="20px"
+    android:paddingRight="48px"
+    android:paddingLeft="48px"
     android:weightSum="8"
     >
 
@@ -19,15 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textSize="24px"
+            android:textSize="36px"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Parent't Name:"
+            android:text="Parent's Name:"
             android:id="@+id/Dialog_Parentnametxt" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:textSize="24px"
+            android:textSize="36px"
             android:layout_weight="1"
             android:inputType="textPersonName"
             android:text=""
@@ -46,16 +46,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textSize="24px"
+            android:textSize="36px"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Polar bear's name:"
+            android:text="Polar Bear's Name:"
             android:id="@+id/dialog_BearNameTxt" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textSize="24px"
+            android:textSize="36px"
             android:inputType="textPersonName"
             android:text=""
             android:ems="5"
@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textSize="24px"
+            android:textSize="36px"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Adoption Date:"
             android:id="@+id/dialog_AdopDateTxt" />

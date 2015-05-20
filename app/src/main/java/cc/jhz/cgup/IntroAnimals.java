@@ -34,6 +34,39 @@ public class IntroAnimals extends Fragment {
             R.drawable.phonimalsstatus_01,R.drawable.phonimalsstatus_02,
             R.drawable.phonimalsstatus_03,R.drawable.phonimalsstatus_04
     };
+    private String[] IntroAnimalTxt =
+            {"THREADS\n" +
+                    "The loss of sea ice habitat from climate " +
+                    "change is the biggest threat to the sur-" +
+                    "vival of polar bears. Other key threats " +
+                    "include polar bear-human conflicts, " +
+                    "overharvesting and industrial impacts.",
+            "THREADS\n" +
+                    "The scarcity of prey is the most preva-" +
+                    "lent threat for the Arctic fox. Disease " +
+                    "and genetic pollution of the species by " +
+                    "foxes bred in captivity also threatens " +
+                    "this species.",
+            "THREADS\n" +
+                    "Vessels that support oil and gas develop-" +
+                    "ment mean increased shipping in sensi-" +
+                    "tive areas. Increased shipping means " +
+                    "more noise that can mask communica-" +
+                    "tions for many Arctic marine species and" +
+                    "it increases the potential for collisions " +
+                    "with marine mammals, especially " +
+                    "whales. It also brings more pollution and " +
+                    "a greater possibility of oil or fuel spills.",
+            "THREADS\n" +
+                    "The retreat of sea ice caused by climate " +
+                    "change forces walruses ashore, with " +
+                    "deadly consequences As arctic sea ice " +
+                    "recedes far from the Russian and Alas-" +
+                    "kan coasts due to warmer temperatures, " +
+                    "walruses – including females and their " +
+                    "babies – are forced to take refuge on " +
+                    "land."
+            };
     private GifImageView gifImageView ;
     private int[] GifRes =
             {
@@ -93,6 +126,7 @@ public class IntroAnimals extends Fragment {
     {
        gifImageView.setImageResource(GifRes[index]);
        imageview.setImageResource(IntroTxt[index]);
+        textView.setText(IntroAnimalTxt[index]);
 
     }
     private void initWidget(View rootview) {
@@ -102,6 +136,7 @@ public class IntroAnimals extends Fragment {
         GoToAnimalAmination.setTypeface(typeface);
         textView = (TextView) rootview.findViewById(R.id.Introanimal_txt);
         textView.setTypeface(typeface1);
+
         imageview = (ImageView)rootview.findViewById(R.id.IntroanimalTxtView);
         gifImageView =(GifImageView)rootview.findViewById(R.id.introanimalsImg);
     }

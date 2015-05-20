@@ -20,7 +20,7 @@ public class AnimalAnimation extends Fragment {
     int position ;
     private GifImageView gifImageView;
     private int[]  GifImgRes = {
-            R.drawable.polar_walk,R.drawable.fox_walk,
+            R.drawable.polar_walk2,R.drawable.fox_walk,
             R.drawable.beluga, R.drawable.walrus,
     };
     public AnimalAnimation(){}
