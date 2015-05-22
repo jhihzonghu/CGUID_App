@@ -37,7 +37,6 @@ public class AnimationContainer extends FragmentActivity {
         else
         {
             final int j = Integer.valueOf(animal);
-            Toast.makeText(this, "Animalcontainer:" + j, Toast.LENGTH_SHORT).show();
             fragmentManager.beginTransaction().add(R.id.layoutforGif, new AnimalAnimation().newInstance(j)).commit();
         }
        // Intent intent = new Intent(this,MainPage.class);

@@ -62,7 +62,6 @@ public class GuidePage extends Activity {
             @Override
             public void onClick(View v) {
                 GuidePosition+=1;
-                Toast.makeText(getBaseContext(),""+i,Toast.LENGTH_SHORT).show();
                 FragmentManager  fragmentManager1 =getFragmentManager() ;
                 GuidePageContentFragment guidePageContentFragment1 = init(GuidePosition);
                 FragmentTransaction fragmentTransaction =fragmentManager1.beginTransaction();

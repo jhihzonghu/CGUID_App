@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:textSize="36px"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Polar Bear's Name:"
+            android:text="Animal's Name:"
             android:id="@+id/dialog_BearNameTxt" />
 
         <EditText

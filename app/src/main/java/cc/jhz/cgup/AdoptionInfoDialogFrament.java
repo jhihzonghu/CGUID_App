@@ -5,8 +5,10 @@ import android.app.Dialog;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -26,6 +28,12 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
     public AdoptionInfoDialogFrament(){};
     private Typeface typeface;
     private View view ;
+    private String[] url = {
+            "http://163.25.117.169/cguid/poloa_walk.apk",
+            "http://163.25.117.169/cguid/fox_walk.apk",
+            "http://163.25.117.169/cguid/beluga.apk",
+            "http://163.25.117.169/cguid/walrus.apk",
+    };
     public static AdoptionInfoDialogFrament newInstance(int AnimalNO)
     {
         Bundle bundle = new Bundle();
@@ -57,6 +65,9 @@ public class AdoptionInfoDialogFrament extends DialogFragment {
                         editor.putString("AnimalNO", ""+index);
                         editor.commit();
                         StartAnimation();
+                        Intent  i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url[index]));
+                        getActivity().startActivity(i);
 
                     }
                 })

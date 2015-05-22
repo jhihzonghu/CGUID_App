@@ -88,7 +88,6 @@ public class IntroAnimals extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.introanimals, container, false);
 
-        Toast.makeText(getActivity().getApplicationContext(), "" + GuidPageNumber, Toast.LENGTH_SHORT).show();
         initWidget(rootView);
         setWidgetValue(index);
         setScrollTxtView();

@@ -100,7 +100,6 @@ public class MainPage extends ActionBarActivity
             case 2:
                 CheckPos();
 
-                Toast.makeText(this, "" + Position2, Toast.LENGTH_SHORT).show();
                     fragmentManager.beginTransaction()
                             .replace(R.id.container,  AnimalAnimation.newInstance(Position2))
                             .commit();
